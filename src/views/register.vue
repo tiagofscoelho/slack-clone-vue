@@ -1,38 +1,41 @@
 <template>
-  <div class="login">
+  <div class="register">
     <el-form 
-      :model="loginForm" 
+      :model="registerForm" 
       :rules="rules" 
-      ref="loginForm" 
+      ref="registerForm" 
       label-position="top"
-      class="login__form">
+      class="register__form">
 
       <h4 class="text-center">
-        Welcome back! 
+        Register a new account
       </h4>
 
       <el-form-item 
+        label="Name" 
+        prop="name">
+        <el-input v-model="registerForm.name"/>
+      </el-form-item>
+      <el-form-item 
         label="Email" 
         prop="email">
-        <el-input v-model="loginForm.email"/>
+        <el-input v-model="registerForm.email"/>
       </el-form-item>
       <el-form-item 
         label="Password" 
         prop="password">
-        <el-input 
-          v-model="loginForm.password"
-          type="password"/>
+        <el-input v-model="registerForm.password"/>
       </el-form-item>
       <el-form-item>
         <el-button 
           type="text"
-          @click="$router.push({ name: 'register' })">
-          Register
+          @click="$router.push({ name: 'login' })">
+          Login
         </el-button>
         <el-button 
           type="primary" 
-          @click="submitForm('loginForm')">
-          Login
+          @click="submitForm('registerForm')">
+          Register
         </el-button>
       </el-form-item>
     </el-form>
@@ -45,12 +48,16 @@ import { ElForm } from 'element-ui/types/form';
 
 @Component
 export default class AppHeader extends Vue {
-  loginForm = {
+  registerForm = {
+    name: '',
     email: '',
     password: ''
   }
 
   rules = {
+    name: [
+      { required: true, message: 'Name is required.', trigger: 'blur' }
+    ],
     email: [
       { required: true, message: 'Email is required.', trigger: 'blur' }
     ],
@@ -60,9 +67,9 @@ export default class AppHeader extends Vue {
   }
 
   submitForm() {
-    (this.$refs.loginForm as ElForm).validate((valid: boolean) => {
+    (this.$refs.registerForm as ElForm).validate((valid: boolean) => {
       if (valid) {
-        // TODO: action to login
+        // TODO: action to register
       }
     })
   }
@@ -70,7 +77,7 @@ export default class AppHeader extends Vue {
 </script>
 
 <style lang="scss">
-.login {
+.register {
   height: 100%;
   display: flex;
   align-items: center;
@@ -89,7 +96,7 @@ export default class AppHeader extends Vue {
     }
   }
 
-  .el-form-item__content {
+  .el-form-item__content{
     text-align: right;
 
     .el-button + .el-button {

@@ -1,0 +1,16 @@
+.el-form-item {
+  text-align: left;
+
+  &__error {
+    left: 10px;
+  }
+
+  &.is-error {
+    margin-bottom: 32px;
+  }
+}
+
+.el-form--label-top .el-form-item__label {
+  padding-bottom: 0;
+  line-height: 26px;
+}

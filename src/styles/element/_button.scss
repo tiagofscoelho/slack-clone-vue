@@ -1,0 +1,17 @@
+.el-button {
+  &--text {
+    &:hover span {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        right: 0;
+        bottom: -2px;
+        left: 0;
+        height: 1px;
+        background: $blue;
+        content: '';
+      }
+    }
+  }
+}
