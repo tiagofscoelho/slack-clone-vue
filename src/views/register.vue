@@ -44,17 +44,17 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import { ElForm } from 'element-ui/types/form';
+import { ElForm } from 'element-ui/types/form'
 
 @Component
 export default class AppHeader extends Vue {
-  registerForm = {
+  private registerForm = {
     name: '',
     email: '',
     password: ''
   }
 
-  rules = {
+  private rules = {
     name: [
       { required: true, message: 'Name is required.', trigger: 'blur' }
     ],
@@ -66,7 +66,7 @@ export default class AppHeader extends Vue {
     ]
   }
 
-  submitForm() {
+  private submitForm() {
     (this.$refs.registerForm as ElForm).validate((valid: boolean) => {
       if (valid) {
         // TODO: action to register
